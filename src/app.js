@@ -8,15 +8,15 @@ const Category = require("./models/category.js")
 const { Model } = require("mongoose")
 app.use(express.json())
 
-app.get("/", async (req, res) => {
-    try {
-        const categories = await Category.find()
-        res.send(categories)
-    } catch (err) {
-        console.log("Something went wrong:", err);
-        res.status(500).json({message:"Internal server error"})
-    }
-})
+app.get("/api/", async (req, res) => {
+  try {
+    const categories = await Category.find();
+    res.send(categories);
+  } catch (err) {
+    console.log("Something went wrong:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 
 
