@@ -1,0 +1,146 @@
+[
+  {
+    "slug": "beauty",
+    "name": "Beauty",
+    "url": "https://dummyjson.com/products/category/beauty",
+    "image": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
+  },
+  {
+    "slug": "fragrances",
+    "name": "Fragrances",
+    "url": "https://dummyjson.com/products/category/fragrances",
+    "image": "https://cdn.dummyjson.com/products/images/fragrances/Calvin%20Klein%20CK%20One/2.png"
+  },
+  {
+    "slug": "furniture",
+    "name": "Furniture",
+    "url": "https://dummyjson.com/products/category/furniture",
+    "image": "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Bed/2.png"
+  },
+  {
+    "slug": "groceries",
+    "name": "Groceries",
+    "url": "https://dummyjson.com/products/category/groceries",
+    "image": "https://cdn.dummyjson.com/products/images/groceries/Apple/1.png"
+  },
+  {
+    "slug": "home-decoration",
+    "name": "Home Decoration",
+    "url": "https://dummyjson.com/products/category/home-decoration",
+    "image": "https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/2.png"
+  },
+  {
+    "slug": "kitchen-accessories",
+    "name": "Kitchen Accessories",
+    "url": "https://dummyjson.com/products/category/kitchen-accessories",
+    "image": "https://cdn.dummyjson.com/products/images/kitchen-accessories/Bamboo%20Spatula/1.png"
+  },
+  {
+    "slug": "laptops",
+    "name": "Laptops",
+    "url": "https://dummyjson.com/products/category/laptops",
+    "image": "https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/2.png"
+  },
+  {
+    "slug": "mens-shirts",
+    "name": "Mens Shirts",
+    "url": "https://dummyjson.com/products/category/mens-shirts",
+    "image": "https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/3.png"
+  },
+  {
+    "slug": "mens-shoes",
+    "name": "Mens Shoes",
+    "url": "https://dummyjson.com/products/category/mens-shoes",
+    "image": "https://cdn.dummyjson.com/products/images/mens-shoes/Nike%20Air%20Jordan%201%20Red%20And%20Black/3.png"
+  },
+  {
+    "slug": "mens-watches",
+    "name": "Mens Watches",
+    "url": "https://dummyjson.com/products/category/mens-watches",
+    "image": "https://cdn.dummyjson.com/products/images/mens-watches/Brown%20Leather%20Belt%20Watch/2.png"
+  },
+  {
+    "slug": "mobile-accessories",
+    "name": "Mobile Accessories",
+    "url": "https://dummyjson.com/products/category/mobile-accessories",
+    "image": "https://cdn.dummyjson.com/products/images/mobile-accessories/Amazon%20Echo%20Plus/2.png"
+  },
+  {
+    "slug": "motorcycle",
+    "name": "Motorcycle",
+    "url": "https://dummyjson.com/products/category/motorcycle",
+    "image": "https://cdn.dummyjson.com/products/images/motorcycle/Generic%20Motorcycle/3.png"
+  },
+  {
+    "slug": "skin-care",
+    "name": "Skin Care",
+    "url": "https://dummyjson.com/products/category/skin-care",
+    "image": "https://cdn.dummyjson.com/products/images/skin-care/Attitude%20Super%20Leaves%20Hand%20Soap/2.png"
+  },
+  {
+    "slug": "smartphones",
+    "name": "Smartphones",
+    "url": "https://dummyjson.com/products/category/smartphones",
+    "image": "https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/2.png"
+  },
+  {
+    "slug": "sports-accessories",
+    "name": "Sports Accessories",
+    "url": "https://dummyjson.com/products/category/sports-accessories",
+    "image": "https://cdn.dummyjson.com/products/images/sports-accessories/American%20Football/1.png"
+  },
+  {
+    "slug": "sunglasses",
+    "name": "Sunglasses",
+    "url": "https://dummyjson.com/products/category/sunglasses",
+    "image": "https://cdn.dummyjson.com/products/images/sunglasses/Black%20Sun%20Glasses/2.png"
+  },
+  {
+    "slug": "tablets",
+    "name": "Tablets",
+    "url": "https://dummyjson.com/products/category/tablets",
+    "image": "https://cdn.dummyjson.com/products/images/sunglasses/Black%20Sun%20Glasses/2.png"
+  },
+  {
+    "slug": "tops",
+    "name": "Tops",
+    "url": "https://dummyjson.com/products/category/tops",
+    "image": "https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/2.png"
+  },
+  {
+    "slug": "vehicle",
+    "name": "Vehicle",
+    "url": "https://dummyjson.com/products/category/vehicle",
+    "image": "https://cdn.dummyjson.com/products/images/vehicle/300%20Touring/2.png"
+  },
+  {
+    "slug": "womens-bags",
+    "name": "Womens Bags",
+    "url": "https://dummyjson.com/products/category/womens-bags",
+    "image": "https://cdn.dummyjson.com/products/images/womens-bags/Blue%20Women's%20Handbag/2.png"
+  },
+  {
+    "slug": "womens-dresses",
+    "name": "Womens Dresses",
+    "url": "https://dummyjson.com/products/category/womens-dresses",
+    "image": "https://cdn.dummyjson.com/products/images/womens-dresses/Black%20Women's%20Gown/2.png"
+  },
+  {
+    "slug": "womens-jewellery",
+    "name": "Womens Jewellery",
+    "url": "https://dummyjson.com/products/category/womens-jewellery",
+    "image": "https://cdn.dummyjson.com/products/images/womens-jewellery/Green%20Crystal%20Earring/2.png"
+  },
+  {
+    "slug": "womens-shoes",
+    "name": "Womens Shoes",
+    "url": "https://dummyjson.com/products/category/womens-shoes",
+    "image": "https://cdn.dummyjson.com/products/images/womens-shoes/Black%20&%20Brown%20Slipper/2.png"
+  },
+  {
+    "slug": "womens-watches",
+    "name": "Womens Watches",
+    "url": "https://dummyjson.com/products/category/womens-watches",
+    "image": "https://cdn.dummyjson.com/products/images/womens-watches/IWC%20Ingenieur%20Automatic%20Steel/2.png"
+  }
+]

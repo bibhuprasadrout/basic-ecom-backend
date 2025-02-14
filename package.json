@@ -1,0 +1,20 @@
+{
+  "name": "basic-ecom-backend",
+  "version": "1.0.0",
+  "description": "This is the backend microservice of the toy ecommerce application I am building.This is a project to help myself learn how backend works using NodeJS.",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest"
+  },
+  "author": "Bibhu Prasad Rout",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
+
