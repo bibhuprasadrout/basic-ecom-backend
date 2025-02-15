@@ -8,13 +8,7 @@ const cors = require("cors");
 const Category = require("./models/category.js")
 const { Model } = require("mongoose")
 app.use(express.json())
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors());
 
 app.get("/api/", async (req, res) => {
   try {
