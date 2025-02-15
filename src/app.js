@@ -2,11 +2,19 @@ const express = require("express")
 const app = express()
 const port = 3000
 const connectDB = require("./config/database.js")
+const cors = require("cors");
 // const landingPage = require("./modules/landingPage.js")
 
 const Category = require("./models/category.js")
 const { Model } = require("mongoose")
 app.use(express.json())
+app.use(
+  cors({
+    origin: "http://localhost:1234/",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.get("/api/", async (req, res) => {
   try {
