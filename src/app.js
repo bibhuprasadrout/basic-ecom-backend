@@ -13,6 +13,42 @@ const User = require("./models/user.js");
 app.use(express.json());
 app.use(cors());
 
+const catchError = (err, res) => {
+  // Handle Mongoose validation errors
+  if (err.name === "ValidationError") {
+    return res.status(400).json({
+      success: false,
+      status: 400,
+      message: "Validation error",
+      error: err.message,
+    });
+  }
+
+  // Handle MongoDB network errors
+  if (err.name === "MongoNetworkError") {
+    return res.status(503).json({
+      success: false,
+      status: 503,
+      message: "Database connection error. Please try again later.",
+    });
+  }
+
+  // ✅ Generic error fallback (for any unhandled errors)
+  return res.status(500).json({
+    success: false,
+    status: 500,
+    message: "Something went wrong. Please try again later.",
+    error: err.message || "Unknown error",
+  });
+
+  // Handle any other known errors
+  return res.status(err.status).json({
+    success: false,
+    status: err.status,
+    message: err.message || "An error occurred.",
+  });
+};
+
 app.get("/api/", async (req, res) => {
   fetchItems = req.query.fetchItems || 0;
   skipItems = req.query.skipItems || 0;
@@ -25,36 +61,50 @@ app.get("/api/", async (req, res) => {
     const response = { categories, categoriesLength };
     res.send(response);
   } catch (err) {
-    console.log("Something went wrong:", err);
-    res.status(500).json({ message: "Internal server error" });
+    catchError(err, res);
   }
 });
 
-app.get("/api/login/", async (req, res) => {
+app.post("/api/login/", async (req, res) => {
   try {
-    const { email, password } = req.query;
+    console.log(req.body);
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(422).json({
+        success: false,
+        status: 422,
+        message: "Both email and password are required",
+      });
+    }
+
     const user = await User.findOne({ email });
     if (!user) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid email or password" });
+      return res.status(404).json({
+        success: false,
+        status: 404,
+        message: "Invalid email or password",
+      });
     }
+
     const isMatch = await user.comparePassword(password);
-    if (!isMatch)
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid email or password" });
-    res.json({
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        status: 401,
+        message: "Invalid email or password",
+      });
+    }
+
+    return res.status(200).json({
       success: true,
+      status: 200,
       message: "Login successful",
-      user: { email: user.email },
+      user: user.username,
+      email: user.email,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Server Error!",
-      error: err.message,
-    });
+    catchError(err, res);
   }
 });
 

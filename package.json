@@ -4,7 +4,7 @@
   "description": "This is the backend microservice of the toy ecommerce application I am building.This is a project to help myself learn how backend works using NodeJS.",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node --inspect src/app.js",
     "dev": "nodemon src/app.js",
     "test": "jest"
   },
