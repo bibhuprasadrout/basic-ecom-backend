@@ -65,7 +65,7 @@ app.get("/api/", async (req, res) => {
   }
 });
 
-app.post("/api/login/", async (req, res) => {
+app.post("/api/signin/", async (req, res) => {
   try {
     console.log(req.body);
     const { email, password } = req.body;
