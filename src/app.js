@@ -7,7 +7,7 @@ const cors = require("cors");
 const crypto = require("crypto");
 
 const Category = require("./models/category.js");
-const { Model } = require("mongoose");
+const Products = require("./models/products.js");
 const { skip } = require("node:test");
 const User = require("./models/user.js");
 app.use(express.json());
@@ -61,6 +61,16 @@ app.get("/api/", async (req, res) => {
     const response = { categories, categoriesLength };
     res.send(response);
   } catch (err) {
+    catchError(err, res);
+  }
+});
+
+app.get("/api/products/:slug", async (req, res) => {
+  const { slug } = req.params;
+  try {
+    const products = await Products.find({ category: slug });
+    res.send(products);
+  } catch {
     catchError(err, res);
   }
 });
