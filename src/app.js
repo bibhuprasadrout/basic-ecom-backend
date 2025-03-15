@@ -65,11 +65,20 @@ app.get("/api/", async (req, res) => {
   }
 });
 
-app.get("/api/products/:slug", async (req, res) => {
+app.get("/api/category/:slug", async (req, res) => {
   const { slug } = req.params;
   try {
     const products = await Products.find({ category: slug });
     res.send(products);
+  } catch {
+    catchError(err, res);
+  }
+});
+app.get("/api/:product", async (req, res) => {
+  const { product } = req.params;
+  try {
+    const productDetails = await Products.find({ title: product });
+    res.send(productDetails);
   } catch {
     catchError(err, res);
   }
