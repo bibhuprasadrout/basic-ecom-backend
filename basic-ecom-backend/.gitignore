@@ -1,0 +1,46 @@
+# Environment
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Dependencies
+node_modules/
+bower_components/
+
+# Build output
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Cache
+.eslintcache
+.stylelintcache
+coverage/
+*.pid
+*.seed
+*.pid.lock
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+.project
+.classpath
+.settings/
+
+# Security / Keys
+*.pem
+*.key
+
+# Local DB files
+basic-ecom-localDB
