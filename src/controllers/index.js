@@ -9,6 +9,7 @@ const {
 } = require("./userApiControllers");
 const {
   getAllProducts,
+  getNRandomProducts,
   getProductById,
   getProductByName,
 } = require("./productsApiControllers");
@@ -36,6 +37,7 @@ module.exports = {
   userControllerToDeleteProfile,
   // product
   getAllProducts,
+  getNRandomProducts,
   getProductById,
   getProductByName,
   // category
