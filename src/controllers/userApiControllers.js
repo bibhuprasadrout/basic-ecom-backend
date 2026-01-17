@@ -5,6 +5,23 @@ require("dotenv").config({
 const { throwNewError } = require("../utils");
 const { User } = require("../models/user");
 
+const cookieOptions = {
+  httpOnly: true, // prevents JS access (XSS protection)
+  path: "/api/v1/",
+  maxAge: 1000 * 60 * 60 * 1, // 1 hour
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // CSRF protection required
+  // TODO:
+  // add refresh token mecanism
+  // add CSRF tokens mechanism (random value stored server‑side, validated on each request).
+  // add Double Submit Cookie pattern (send a second cookie and compare). Example: path: "/api" so it’s not sent to unrelated routes.
+  secure: process.env.NODE_ENV === "production", // only over HTTPS (set false in local dev)
+};
+if (process.env.NODE_ENV === "production") {
+  // add domain for prod
+} else if (process.env.NODE_ENV === "development") {
+  cookieOptions.domain = "localhost";
+}
+
 const userControllerToSignup = async (req, res, next) => {
   try {
     const { firstName, lastName, userName, email, password } = req.body;
@@ -31,7 +48,7 @@ const userControllerToSignin = (req, res, next) => {
     const { email } = req.body;
     const user = req.user;
 
-    // create the json web token
+    // create the json web token, made sure to have different secrets for development and production
     const token = jwt.sign(
       { id: user._id, email: email },
       process.env.JWT_SECRET_KEY,
@@ -40,20 +57,7 @@ const userControllerToSignin = (req, res, next) => {
       }
     );
 
-    // place the json web token in a cookie. made sure to have different secrets for development and production
-    const cookieOptions = {
-      httpOnly: true, // prevents JS access (XSS protection)
-      sameSite: "strict", // CSRF protection
-      maxAge: 1000 * 60 * 60 * 3, // 1 hour
-
-      // secure: true, // only over HTTPS (set false in local dev)
-    };
-    if (process.env.NODE_ENV === "production") {
-      cookieOptions.secure = true;
-    } else if (process.env.NODE_ENV === "development") {
-      cookieOptions.secure = false;
-    }
-    // the cookie enclosing the jwt is sent along with the response
+    // place the json web token in a cookie, the cookie enclosing the jwt is sent along with the response
     res
       .cookie("jwt", token, cookieOptions)
       .status(200)
@@ -129,7 +133,8 @@ const userControllerToLogoutProfile = (req, res, next) => {
   try {
     // the cookie is passed with a null token and set to expiere immediately
     res
-      .cookie("jwt", null, { expires: new Date(Date.now()) })
+      // .cookie("jwt", null, { expires: new Date(Date.now()) })
+      .clearCookie("jwt", cookieOptions)
       .status(200)
       .json({
         success: true,

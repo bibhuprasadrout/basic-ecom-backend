@@ -11,7 +11,18 @@ const { connectDB } = require("./config/database.js");
 
 // core and dependency middlewares
 app.use(express.json());
-app.use(cors());
+
+if (process.env.NODE_ENV === "development") {
+  app.use(
+    cors({
+      origin: "http://localhost:5173", // your frontend
+      credentials: true, // allow cookies/authorization headers
+    })
+  );
+}
+if (process.env.NODE_ENV === "production") {
+  app.use(cors());
+}
 // this is usually how cors is configured
 // cors({
 //     origin: "http://localhost:3000", // only allow this frontend

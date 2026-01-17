@@ -34,7 +34,10 @@ const signupIputValidator = async (req, res, next) => {
   }
 
   // first name and last name can only be alphabets string
-  if (!validator.isAlpha(firstName) || !validator.isAlpha(lastName)) {
+  if (
+    !validator.isAlpha(firstName, "en-US", { ignore: " " }) ||
+    !validator.isAlpha(lastName, "en-US", { ignore: " " })
+  ) {
     const err = throwNewError(422, "Names must only be alphabetic."); // code 422 Unprocessable Entity
     return next(err);
   }
@@ -225,7 +228,7 @@ const patchProfileInputValidator = (req, res, next) => {
     if (patchProfileInputs?.maidenName) {
       if (
         !validator.isAlpha(patchProfileInputs?.maidenName, "en-US", {
-          ignore: null,
+          ignore: " ",
         })
       ) {
         const err = throwNewError(422, "Names must only be alphabetic."); // code 422 Unprocessable Entity
