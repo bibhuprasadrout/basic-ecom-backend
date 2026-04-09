@@ -24,5 +24,14 @@
   "devDependencies": {
     "cross-env": "^10.1.0",
     "nodemon": "^3.1.9"
-  }
+  },
+  "x_learningNotes": [
+    "This file is package.json, the Node.js project manifest. It is pure JSON, so it cannot contain comments like // or /* */. To keep learning explanations inside the file without breaking npm, we store them under a custom field that npm ignores.",
+    "\"name\" and \"version\" identify your package. \"private\" is not set here, so publishing is technically possible; many apps set \"private\": true to prevent accidental publish.",
+    "\"main\": \"src/app.js\" is the entry file when this package is required by another Node program. For an application, it also acts as a documentation hint: the server starts at src/app.js.",
+    "\"scripts\" are named commands you run via npm. \"start\" runs node directly. \"dev\" uses nodemon to restart on changes and cross-env to set NODE_ENV in a cross-platform way (Windows vs Unix).",
+    "\"dependencies\" are runtime packages required for the server to function (express, mongoose, jsonwebtoken, bcrypt, etc.). \"devDependencies\" are tools used during development (nodemon, cross-env). In production installs, devDependencies are often skipped.",
+    "Semver (^) means \"compatible updates\". For example \"express\": \"^4.21.2\" allows updates like 4.22.0 but not 5.0.0. This balances getting bugfixes with avoiding breaking changes.",
+    "If you add linting/testing tooling later (eslint, prettier, jest config), it commonly appears here as devDependencies and additional scripts."
+  ]
 }

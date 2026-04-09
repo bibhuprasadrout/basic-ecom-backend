@@ -5,6 +5,7 @@
 // ###
 
 const validator = require("validator"); // sanitizes and validates only strings
+/* Explanation: This is the largest middleware module in your backend, and it exists to enforce a critical backend rule: never trust client input. “Validation” means checking that input has the required fields and that those fields follow your expected rules (email format, password strength, allowed characters). “Sanitization” means transforming input to reduce risk and normalize data (escaping HTML, trimming spaces, converting case).Why this matters: your database is the long-term memory of your system. If you store inconsistent or malicious data, every future feature is harder. Also, security vulnerabilities (XSS, injection, auth bypass) often come from accepting unvalidated input. This file uses a layered approach: small middleware functions that each enforce one rule. Routes compose them into a pipeline so a request must pass all checks before the controller runs.This file also demonstrates an important Express concept: middleware is just functions. You can unit-test them, reuse them across routes, and keep controller code small by moving “guard logic” here. */
 
 // import helpers
 const {
@@ -17,11 +18,13 @@ const {
 // schemas
 const { User } = require("../models/user");
 const { set } = require("mongoose");
+/* Explanation: These imports set up the support tools used by your middleware. `throwNewError` standardizes error creation. The helper functions (`normalizeStrings`, `removeEmptyPatchKeys`, `loopPatchProfileInputs`) implement reusable data cleaning and patch filtering logic. `User` is the model used for DB checks like “does this email already exist?”. The `mongoose.set` import suggests you may be toggling global mongoose settings somewhere in the file (for example strictQuery); it’s not commonly needed in middleware, but leaving it doesn’t change behavior. */
 
 //
 //
 //
 // ======== signup route
+/* Explanation: The signup section contains middlewares that validate signup payloads and enforce uniqueness. Signup endpoints are a major attack surface: attackers try to create accounts with weird data, brute force usernames/emails, or exploit validation gaps. The strategy is: validate first (cheap checks), then check DB uniqueness (more expensive), then proceed to controller that saves the user. */
 
 // validate input for signup route
 const signupIputValidator = async (req, res, next) => {
@@ -108,6 +111,7 @@ const isUserNameUnique = async (req, res, next) => {
 //
 //
 // ======== signin route
+/* Explanation: The signin section is about authentication, which is verifying identity. It validates the payload, checks that the user exists, and compares the provided password against the stored hash. Authentication logic is split between middleware and controller: middleware proves credentials; controller issues tokens/cookies. This separation reduces the chance of accidentally issuing tokens without proper checks. */
 
 // signinInputValidator validate input for signin route
 const signinInputValidator = (req, res, next) => {

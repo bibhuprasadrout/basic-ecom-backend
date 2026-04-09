@@ -1,3 +1,4 @@
 const express = require("express");
 const router = express.Router();
 module.exports = { userRouter: router };
+/* Explanation: This user router currently exports an empty router. This is common during early development: you create the file and export the router so it can be mounted, then you add endpoints later. The presence of the router in `routes/index.js` and `app.js` means the application already has a placeholder for user-related endpoints (separate from auth endpoints).When you add user routes later, you’ll define them on `router` (for example `router.get("/api/v1/users", ...)`) and attach controller functions and middleware, just like the other route modules. Keeping user routes separate from auth routes is a good design decision: auth handles identity/session, while user routes handle user resources and administration features. */
