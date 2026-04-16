@@ -30,6 +30,8 @@ if (process.env.NODE_ENV === "development") {
   app.use(
     cors({
       origin: ["http://localhost:5173"],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,
     }),
   );
@@ -41,6 +43,8 @@ if (process.env.NODE_ENV === "production") {
   app.use(
     cors({
       origin: ["https://basic-ecom-qgbz.onrender.com/"],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,
     }),
   );
