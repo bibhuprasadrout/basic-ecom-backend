@@ -11,7 +11,8 @@ const authMiddleware = (req, res, next) => {
     //   if (err) return next(err);
     //   return req.cookies.jwt;
     // });
-    if (!token) return next(throwNewError(401, "Auth failed: Invalid or expired token"));
+    if (!token)
+      return next(throwNewError(401, "Auth failed: Invalid or expired token"));
     const tokenMessage = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.userId = tokenMessage.id;
     req.userEmail = tokenMessage.email;

@@ -8,16 +8,13 @@ const cookieOptions = {
   path: "/api/v1/",
   maxAge: 1000 * 60 * 60 * 1, // 1 hour
   sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // CSRF protection required
-  // TODO:
-  // add refresh token mecanism
-  // add CSRF tokens mechanism (random value stored server‑side, validated on each request).
-  // add Double Submit Cookie pattern (send a second cookie and compare). Example: path: "/api" so it’s not sent to unrelated routes.
   secure: process.env.NODE_ENV === "production", // only over HTTPS (set false in local dev)
 };
 if (process.env.NODE_ENV === "production") {
 } else if (process.env.NODE_ENV === "development") {
   cookieOptions.domain = "localhost";
 }
+// TODO: add refresh token mecanism, add CSRF tokens mechanism (random value stored server‑side, validated on each request), add Double Submit Cookie pattern (send a second cookie and compare). Example: path: "/api" so it’s not sent to unrelated routes.
 /* Explanation: These cookie options define how the browser stores and sends the auth cookie. This is where security and browser behavior meet backend logic.`httpOnly: true` prevents JavaScript from reading the cookie via `document.cookie`, which reduces impact of XSS (malicious scripts stealing tokens). `secure` ensures cookies are only sent over HTTPS in production. `sameSite` controls whether cookies are sent on cross-site requests; this is a primary defense against CSRF, but if your frontend and backend are on different sites and you need cookies, you may need `sameSite: "none"` plus `secure: true` (which is why production uses none). `path` restricts where the cookie is sent; here it is `/api/v1/`, meaning the cookie will be sent only for routes under that prefix. `maxAge` sets cookie expiry time (here 1 hour). The `domain` setting in development forces cookie scope to localhost; in production, you usually set an explicit domain like `.yourdomain.com` if needed. Small mistakes in cookie options can cause “works in Postman but not in browser” bugs, because browsers enforce these rules strictly. */
 
 const userControllerToSignup = async (req, res, next) => {

@@ -56,7 +56,7 @@ router.post(
 
 // logout current user
 router.post("/api/v1/logout", userControllerToLogoutProfile);
-/* Explanation: Logout typically clears the auth cookie. Depending on your architecture, you may also invalidate tokens server-side (token blacklist) or rotate secrets. In your current implementation, logout is a simple stateless “remove cookie” flow, which is common for JWT-in-cookie setups. */
+/* Explanation: Logout typically clears the auth cookie.In current implementation, logout is a simple stateless “remove cookie” flow, which is common for JWT-in-cookie setups. */
 
 // get profile data after login
 router.get("/api/v1/auth/profile", userControllerToGetProfile);
