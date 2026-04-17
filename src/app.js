@@ -36,19 +36,19 @@ if (process.env.NODE_ENV === "development") {
     }),
   );
 }
-if (process.env.NODE_ENV === "production") {
-  app.use(cors());
-}
 // if (process.env.NODE_ENV === "production") {
-//   app.use(
-//     cors({
-//       origin: ["https://basic-ecom-qgbz.onrender.com/"],
-//       methods: ["GET", "POST", "PUT", "DELETE"],
-//       allowedHeaders: ["Content-Type", "Authorization"],
-//       credentials: true,
-//     }),
-//   );
+//   app.use(cors());
 // }
+if (process.env.NODE_ENV === "production") {
+  app.use(
+    cors({
+      origin: ["https://basic-ecom-qgbz.onrender.com"],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true,
+    }),
+  );
+}
 /* Explanation: This block configures CORS, which is a browser security policy issue, not a backend-to-backend issue.Same-origin policy means browsers restrict JavaScript from calling APIs on a different origin (scheme+host+port) unless the server explicitly allows it via CORS headers. Your frontend dev server runs at `http://localhost:5173`, while your backend might run at `http://localhost:PORT`, so they are different origins. When you enable `cors({ origin: "...", credentials: true })`, Express adds headers that tell the browser: “it’s OK for that origin to call this API, and it’s OK to include credentials (cookies/authorization headers).” This is required if you use cookie-based auth (`withCredentials: true` on the frontend). In production, you currently call `cors()` with defaults, which effectively allows requests from anywhere (depending on the cors package defaults). That can be acceptable for public APIs, but for private APIs it’s usually better to restrict allowed origins. The conditional on `NODE_ENV` is an environment-based configuration switch: you loosen restrictions for local development and tighten them for production. */
 const cookieParser = require("cookie-parser");
 if (process.env.NODE_ENV === "development") {
