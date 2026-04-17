@@ -40,22 +40,22 @@ router.post(
   signupIputValidator,
   isUserUnique,
   isUserNameUnique,
-  userControllerToSignup
+  userControllerToSignup,
 );
 /* Explanation: Signup route pipeline: `signupIputValidator` ensures required fields exist and are valid (email format, password rules, etc.). `isUserUnique` and `isUserNameUnique` enforce uniqueness constraints before attempting to create a user (this produces better error messages than relying only on DB unique indexes). Finally `userControllerToSignup` saves the user. A deeper backend concept: even with these checks, you still need database-level uniqueness (unique indexes) to prevent race conditions (two requests arriving simultaneously). Middleware validation improves UX; DB constraints guarantee correctness. */
 
 // userControllerToSignin
 router.post(
-  "/api/v1/signin/",
+  "/api/v1/signin",
   signinInputValidator,
   ensureUserExists,
   comparePasswordToHashAtSignin,
-  userControllerToSignin
+  userControllerToSignin,
 );
 /* Explanation: Signin route pipeline: validate the payload first, then ensure the user exists, then compare the provided password to the stored hash, then issue a session token/cookie in the controller. Notice the ordering: you only do expensive or sensitive operations (hash comparison, token generation) after basic validation passes. This is both a security and performance pattern. Also note the trailing slash in the path (`/signin/`); Express treats `/signin` and `/signin/` similarly by default, but consistency helps avoid confusing client bugs. */
 
 // logout current user
-router.post("/api/v1/logout/", userControllerToLogoutProfile);
+router.post("/api/v1/logout", userControllerToLogoutProfile);
 /* Explanation: Logout typically clears the auth cookie. Depending on your architecture, you may also invalidate tokens server-side (token blacklist) or rotate secrets. In your current implementation, logout is a simple stateless “remove cookie” flow, which is common for JWT-in-cookie setups. */
 
 // get profile data after login
@@ -70,7 +70,7 @@ router.patch(
   patchProfileInputValidator,
   sanitizePatchUserNonStringProperties,
   sanitizePatchUserStringProperties,
-  userControllerToPatchProfile
+  userControllerToPatchProfile,
 );
 /* Explanation: Profile patch endpoint shows a richer validation/normalization pipeline. Patch endpoints are tricky because they accept partial updates and must enforce a whitelist of allowed fields. Your middleware chain suggests you: (1) ensure the current user is allowed to be patched, (2) normalize inputs (consistent casing, trimming, escaping), (3) validate allowed shapes/rules, and (4) sanitize different types of values before calling the controller. This is a “defense-in-depth” approach: multiple layers reduce the chance of storing unsafe or invalid data. */
 
